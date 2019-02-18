@@ -6,7 +6,7 @@
 
 <h1>Create users</h1>
 
-{!! Form::open(['action'=>'AdminUsersController@store']) !!}
+{!! Form::open(['action'=>'AdminUsersController@store', 'files'=>true]) !!}
 
 	<div class="form-group">
 
@@ -18,6 +18,9 @@
 
         {!! Form::label('password', 'Password:') !!}
         {!! Form::password('password', ['class'=>'form-control']) !!}
+
+        {!! Form::label('file', 'Image:') !!}
+        {!! Form::file('file', ['class'=>'form-control']) !!}
 
         {!! Form::label('role_id', 'Role:') !!}
         {!! Form::select('role_id', array('' => 'Choose') + $roles, null, ['class'=>'form-control']) !!}
