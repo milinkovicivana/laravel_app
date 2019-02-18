@@ -19,8 +19,8 @@
         {!! Form::label('password', 'Password:') !!}
         {!! Form::password('password', ['class'=>'form-control']) !!}
 
-        {!! Form::label('file', 'Image:') !!}
-        {!! Form::file('file', ['class'=>'form-control']) !!}
+        {!! Form::label('photo_id', 'Photo:') !!}
+        {!! Form::file('photo_id', ['class'=>'form-control']) !!}
 
         {!! Form::label('role_id', 'Role:') !!}
         {!! Form::select('role_id', array('' => 'Choose') + $roles, null, ['class'=>'form-control']) !!}
