@@ -10,12 +10,14 @@
        <thead>
          <tr>
            <th>ID</th>
+           <th>Photo</th>
            <th>Name</th>
            <th>Email</th>
            <th>Role</th>
            <th>Active</th>
            <th>Created</th>
            <th>Updated</th>
+
          </tr>
        </thead>
        <tbody>
@@ -26,7 +28,8 @@
 
          <tr>
            <td>{{$user->id}}</td>
-           <td>{{$user->name}}</td>
+           <td><img src="{{$user->photo ? $user->photo->file : '/profile.png'}}" alt="" height="50"></td>
+           <td><a href="{{route('admin.users.edit', $user->id)}}">{{$user->name}}</a></td>
            <td>{{$user->email}}</td>
            <td>{{$user->role_id == null ? 'User has no role' : $user->role->name}}</td>
            <td>{{$user->is_active == 1 ? 'Yes' : 'No'}}</td>
