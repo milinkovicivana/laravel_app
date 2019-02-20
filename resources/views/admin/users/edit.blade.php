@@ -33,7 +33,7 @@
                 {!! Form::file('photo_id', ['class'=>'form-control']) !!}
 
                 {!! Form::label('role_id', 'Role:') !!}
-                {!! Form::select('role_id', array('' => 'Choose') + $roles, null, ['class'=>'form-control']) !!}
+                {!! Form::select('role_id', $roles, null, ['class'=>'form-control']) !!}
 
                 {!! Form::label('is_active', 'Active:') !!}
                 {!! Form::select('is_active', array(1 => 'Yes', 0 => 'No'), null, ['class'=>'form-control']) !!}
