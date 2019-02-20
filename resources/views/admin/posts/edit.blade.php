@@ -40,6 +40,16 @@
 
             {!! Form::close() !!}
 
+            {!! Form::open(['method'=>'delete', 'action'=>['AdminPostsController@destroy', $post->id]]) !!}
+
+            <div class="form-group">
+
+                {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
+
+            </div>
+
+            {!! Form::close() !!}
+
         </div>
 
     </div>

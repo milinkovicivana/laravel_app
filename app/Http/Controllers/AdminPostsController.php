@@ -126,6 +126,8 @@ class AdminPostsController extends Controller
 
         Auth::user()->posts()->where('id', $id)->first()->update($input);
 
+        Session::flash('updated_post', 'Post has been updated.');
+
         return redirect('/admin/posts');
     }
 
@@ -137,6 +139,16 @@ class AdminPostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        unlink(public_path() . $post->photo->file);
+
+        $post->delete();
+
+        Photo::where('id', $post->photo->id)->delete();
+
+        Session::flash('deleted_post', 'Post has been deleted.');
+
+        return redirect('/admin/posts');
     }
 }
