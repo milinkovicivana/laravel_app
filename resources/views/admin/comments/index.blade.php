@@ -27,6 +27,49 @@
                    <td>{{$comment->user->name}}</td>
                    <td>{{$comment->body}}</td>
                    <td><a href="{{route('home.post', $comment->post_id)}}">View post</a></td>
+
+                   <td>
+
+                      @if($comment->is_active == 1)
+
+                        {!! Form::open(['method'=>'patch','action'=>['PostCommentsController@update', $comment->id]]) !!}
+
+                        	<input type="hidden" name="is_active" value="0">
+                        	<div class="form-group">
+
+                        	    {!! Form::submit('Dissaprove', ['class'=>'btn btn-primary']) !!}
+
+                        	</div>
+
+                        {!! Form::close() !!}
+
+                      @else
+
+                           {!! Form::open(['method'=>'patch','action'=>['PostCommentsController@update', $comment->id]]) !!}
+
+                           <input type="hidden" name="is_active" value="1">
+                           <div class="form-group">
+
+                               {!! Form::submit('Approve', ['class'=>'btn btn-success']) !!}
+
+                           </div>
+
+                           {!! Form::close() !!}
+
+                      @endif
+
+                   </td>
+                   <td>
+                       {!! Form::open(['method'=>'delete','action'=>['PostCommentsController@destroy', $comment->id]]) !!}
+
+                       <div class="form-group">
+
+                           {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
+
+                       </div>
+
+                       {!! Form::close() !!}
+                   </td>
                  </tr>
 
              @endforeach
