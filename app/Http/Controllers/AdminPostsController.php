@@ -124,7 +124,9 @@ class AdminPostsController extends Controller
             $input['photo_id'] = $photo->id;
         }
 
-        Auth::user()->posts()->where('id', $id)->first()->update($input);
+        //Auth::user()->posts()->where('id', $id)->first()->update($input);
+
+        Post::where('id', $id)->first()->update($input);
 
         Session::flash('updated_post', 'Post has been updated.');
 
@@ -150,5 +152,14 @@ class AdminPostsController extends Controller
         Session::flash('deleted_post', 'Post has been deleted.');
 
         return redirect('/admin/posts');
+    }
+
+    public function post($id){
+
+        $post = Post::findOrFail($id);
+
+        $categories = Category::all();
+
+        return view('post', compact('post', 'categories'));
     }
 }

@@ -42,7 +42,7 @@
                <td>{{$post->id}}</td>
                <td><img src="{{$post->photo ? $post->photo->file : '/empty-image.png'}}" alt="" height="50"></td>
                <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->title}}</a></td>
-               <td>{{$post->body}}</td>
+               <td>{{str_limit($post->body, 15)}}</td>
                <td>{{$post->category ? $post->category->name : 'Uncategorised'}}</td>
                <td>{{$post->user->name}}</td>
                <td>{{$post->created_at->diffForHumans()}}</td>
