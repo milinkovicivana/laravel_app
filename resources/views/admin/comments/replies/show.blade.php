@@ -5,9 +5,9 @@
 @section('content')
 
 
-    @if(count($comments) > 0)
+    @if(count($replies) > 0)
 
-        <h1>Comments</h1>
+        <h1>Replies</h1>
 
         <table class="table">
             <thead>
@@ -16,25 +16,23 @@
                 <th>Author</th>
                 <th>Comment</th>
                 <th>Post</th>
-                <th>Replies</th>
             </tr>
             </thead>
             <tbody>
 
-            @foreach($comments as $comment)
+            @foreach($replies as $reply)
 
                 <tr>
-                    <td>{{$comment->id}}</td>
-                    <td>{{$comment->user->name}}</td>
-                    <td>{{$comment->body}}</td>
-                    <td><a href="{{route('home.post', $comment->post_id)}}">View post</a></td>
-                    <td><a href="{{route('admin.comments.replies.show', $comment->id)}}">View replies</a></td>
+                    <td>{{$reply->id}}</td>
+                    <td>{{$reply->user->name}}</td>
+                    <td>{{$reply->body}}</td>
+                    <td><a href="{{route('home.post', $reply->comment->post->id)}}">View post</a></td>
 
                     <td>
 
-                        @if($comment->is_active == 1)
+                        @if($reply->is_active == 1)
 
-                            {!! Form::open(['method'=>'patch','action'=>['PostCommentsController@update', $comment->id]]) !!}
+                            {!! Form::open(['method'=>'patch','action'=>['CommentRepliesController@update', $reply->id]]) !!}
 
                             <input type="hidden" name="is_active" value="0">
                             <div class="form-group">
@@ -47,7 +45,7 @@
 
                         @else
 
-                            {!! Form::open(['method'=>'patch','action'=>['PostCommentsController@update', $comment->id]]) !!}
+                            {!! Form::open(['method'=>'patch','action'=>['CommentRepliesController@update', $reply->id]]) !!}
 
                             <input type="hidden" name="is_active" value="1">
                             <div class="form-group">
@@ -62,7 +60,7 @@
 
                     </td>
                     <td>
-                        {!! Form::open(['method'=>'delete','action'=>['PostCommentsController@destroy', $comment->id]]) !!}
+                        {!! Form::open(['method'=>'delete','action'=>['CommentRepliesController@destroy', $reply->id]]) !!}
 
                         <div class="form-group">
 
@@ -78,7 +76,7 @@
 
             @else
 
-                <h1 class="text-center">No comments</h1>
+                <h1 class="text-center">No replies</h1>
 
             @endif
 

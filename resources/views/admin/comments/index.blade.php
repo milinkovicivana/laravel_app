@@ -16,6 +16,7 @@
                <th>Author</th>
                <th>Comment</th>
                <th>Post</th>
+               <th>Replies</th>
              </tr>
            </thead>
            <tbody>
@@ -27,6 +28,7 @@
                    <td>{{$comment->user->name}}</td>
                    <td>{{$comment->body}}</td>
                    <td><a href="{{route('home.post', $comment->post_id)}}">View post</a></td>
+                   <td><a href="{{route('admin.comments.replies.show', $comment->id)}}">View replies</a></td>
 
                    <td>
 

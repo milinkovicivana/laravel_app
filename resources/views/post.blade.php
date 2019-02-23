@@ -85,7 +85,62 @@
             <h4 class="media-heading">{{$comment->user->name}}
                 <small>{{$comment->created_at->diffForHumans()}}</small>
             </h4>
-            {{$comment->body}}
+            <p>{{$comment->body}}</p>
+
+            @if(Auth::check())
+
+                <button class="toggle-reply btn btn-primary pull-right">Reply</button>
+
+            @endif
+
+            @if($comment->replies)
+
+                @foreach($comment->replies as $reply)
+
+                    @if($reply->is_active == 1)
+
+                <!-- Nested Comment -->
+                    <div id="nested-comment" class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="{{$reply->user->photo ? $reply->user->photo->file : '/profile.png'}}" alt="" height="64">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{$reply->user->name}}
+                                <small>{{$reply->created_at->diffForHumans()}}</small>
+                            </h4>
+                             {{$reply->body}}
+                        </div>
+
+                      <div class="comment-reply-container">
+
+
+                        <div class="comment-reply col-sm-6">
+
+                            {!! Form::open(['action'=>'CommentRepliesController@createReply']) !!}
+
+                                <input type="hidden" name="comment_id" value="{{$comment->id}}">
+
+                                <div class="form-group">
+
+                                    {!! Form::label('body', 'Reply:') !!}
+                                    {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>2]) !!}
+
+                                </div>
+                                <div class="form-group">
+
+                                    {!! Form::submit('Reply', ['class'=>'btn btn-primary']) !!}
+
+                                </div>
+
+                            {!! Form::close() !!}
+
+                        </div>
+                    </div>
+                    <!-- End Nested Comment -->
+                   </div>
+                   @endif
+                @endforeach
+            @endif
         </div>
     </div>
 
@@ -93,31 +148,6 @@
 
     @endif
 
-    <!-- Comment -->
-    <div class="media">
-        <a class="pull-left" href="#">
-            <img class="media-object" src="http://placehold.it/64x64" alt="">
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading">Start Bootstrap
-                <small>August 25, 2014 at 9:30 PM</small>
-            </h4>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            <!-- Nested Comment -->
-            <div class="media">
-                <a class="pull-left" href="#">
-                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">Nested Start Bootstrap
-                        <small>August 25, 2014 at 9:30 PM</small>
-                    </h4>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </div>
-            <!-- End Nested Comment -->
-        </div>
-    </div>
 
 @stop
 
@@ -155,6 +185,27 @@
     </div>
 
 
+
+
+
+
+
+@stop
+
+@section('scripts')
+
+    <script>
+
+        $('.toggle-reply').click(function(){
+
+            $(this).next().slideToggle("fast");
+
+
+        });
+
+
+
+    </script>
 
 
 
