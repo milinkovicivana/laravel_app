@@ -37,6 +37,10 @@
 
         <p class="bg-success">{{session('created_comment')}}</p>
 
+    @elseif(Session::has('created_reply'))
+
+        <p class="bg-success">{{session('created_reply')}}</p>
+
     @endif
 
     <!-- Blog Comments -->
@@ -87,11 +91,11 @@
             </h4>
             <p>{{$comment->body}}</p>
 
-            @if(Auth::check())
+            {{--@if(Auth::check())--}}
 
-                <button class="toggle-reply btn btn-primary pull-right">Reply</button>
+                {{--<button class="toggle-reply btn btn-primary pull-right">Reply</button>--}}
 
-            @endif
+            {{--@endif--}}
 
             @if($comment->replies)
 
@@ -111,36 +115,37 @@
                              {{$reply->body}}
                         </div>
 
-                      <div class="comment-reply-container">
-
-
-                        <div class="comment-reply col-sm-6">
-
-                            {!! Form::open(['action'=>'CommentRepliesController@createReply']) !!}
-
-                                <input type="hidden" name="comment_id" value="{{$comment->id}}">
-
-                                <div class="form-group">
-
-                                    {!! Form::label('body', 'Reply:') !!}
-                                    {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>2]) !!}
-
-                                </div>
-                                <div class="form-group">
-
-                                    {!! Form::submit('Reply', ['class'=>'btn btn-primary']) !!}
-
-                                </div>
-
-                            {!! Form::close() !!}
-
-                        </div>
-                    </div>
                     <!-- End Nested Comment -->
                    </div>
                    @endif
                 @endforeach
             @endif
+        </div>
+    </div>
+
+    <div class="comment-reply-container">
+
+
+        <div class="comment-reply">
+
+            {!! Form::open(['action'=>'CommentRepliesController@createReply']) !!}
+
+            <input type="hidden" name="comment_id" value="{{$comment->id}}">
+
+            <div class="form-group">
+
+                {!! Form::label('body', 'Reply:') !!}
+                {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>2]) !!}
+
+            </div>
+            <div class="form-group">
+
+                {!! Form::submit('Reply', ['class'=>'btn btn-primary']) !!}
+
+            </div>
+
+            {!! Form::close() !!}
+
         </div>
     </div>
 
@@ -198,7 +203,7 @@
 
         $('.toggle-reply').click(function(){
 
-            $(this).next().slideToggle("fast");
+            $('comment-reply').slideToggle("fast");
 
 
         });
