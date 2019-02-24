@@ -40,6 +40,9 @@
       {!! Form::close() !!}
 
 
+      @include('includes.formError')
+
+
   </div>
 
   <div class="col-sm-6">
