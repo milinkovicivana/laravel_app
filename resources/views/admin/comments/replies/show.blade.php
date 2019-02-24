@@ -26,7 +26,7 @@
                     <td>{{$reply->id}}</td>
                     <td>{{$reply->user->name}}</td>
                     <td>{{$reply->body}}</td>
-                    <td><a href="{{route('home.post', $reply->comment->post->id)}}">View post</a></td>
+                    <td><a href="{{route('home.post', $reply->comment->post->slug)}}">View post</a></td>
 
                     <td>
 
