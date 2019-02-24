@@ -123,6 +123,8 @@
         </div>
     </div>
 
+    @if(Auth::check())
+
     <div class="comment-reply-container">
 
 
@@ -148,6 +150,8 @@
 
         </div>
     </div>
+
+    @endif
 
         @endforeach
 
