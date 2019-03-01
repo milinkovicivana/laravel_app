@@ -11,11 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
+
+Route::get('/', 'HomeController@index');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
@@ -23,10 +21,7 @@ Route::get('/post/{slug}', ['as'=>'home.post','uses'=>'AdminPostsController@post
 
 Route::group(['middleware'=>'admin'], function(){
 
-    Route::get('/admin', function (){
-
-        return view('admin.index');
-    });
+    Route::get('/admin', 'AdminController@index');
 
     Route::resource('/admin/users', 'AdminUsersController', ['names'=>[
 
