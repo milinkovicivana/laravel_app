@@ -1,9 +1,17 @@
 @extends('layouts.blog-post')
 
 
-
-
 @section('content')
+
+    @if(Session::has('created_comment'))
+
+        <p class="alert alert-success">{{session('created_comment')}}</p>
+
+    @elseif(Session::has('created_reply'))
+
+        <p class="alert alert-success">{{session('created_reply')}}</p>
+
+    @endif
 
 
     <!-- Blog Post -->
@@ -34,19 +42,10 @@
 
     <hr>
 
-    @if(Session::has('created_comment'))
-
-        <p class="bg-success">{{session('created_comment')}}</p>
-
-    @elseif(Session::has('created_reply'))
-
-        <p class="bg-success">{{session('created_reply')}}</p>
-
-    @endif
 
     <!-- Blog Comments -->
 
-    @if(Auth::check())
+    @if(Auth::check() && Auth::user()->is_active == 1)
 
     <!-- Comments Form -->
     <div class="well">
@@ -124,7 +123,7 @@
         </div>
     </div>
 
-    @if(Auth::check())
+    @if(Auth::check() && Auth::user()->is_active == 1)
 
     <div class="comment-reply-container">
 

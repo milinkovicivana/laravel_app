@@ -6,15 +6,15 @@
 
     @if(Session::has('created_category'))
 
-        <p class="bg-success">{{session('created_category')}}</p>
+        <p class="alert alert-success">{{session('created_category')}}</p>
 
     @elseif(Session::has('updated_category'))
 
-        <p class="bg-success">{{session('updated_category')}}</p>
+        <p class="alert alert-success">{{session('updated_category')}}</p>
 
     @elseif(Session::has('deleted_category'))
 
-        <p class="bg-danger">{{session('deleted_category')}}</p>
+        <p class="alert alert-danger">{{session('deleted_category')}}</p>
 
     @endif
 

@@ -5,15 +5,15 @@
 
     @if(Session::has('created_post'))
 
-        <p class="bg-success">{{session('created_post')}}</p>
+        <p class="alert alert-success">{{session('created_post')}}</p>
 
     @elseif(Session::has('updated_post'))
 
-        <p class="bg-success">{{session('updated_post')}}</p>
+        <p class="alert alert-success">{{session('updated_post')}}</p>
 
     @elseif(Session::has('deleted_post'))
 
-        <p class="bg-danger">{{session('deleted_post')}}</p>
+        <p class="alert alert-danger">{{session('deleted_post')}}</p>
 
     @endif
 

@@ -6,7 +6,7 @@
 
     @if(Session::has('deleted_photo'))
 
-        <p class="bg-danger">{{session('deleted_photo')}}</p>
+        <p class="alert alert-danger">{{session('deleted_photo')}}</p>
 
     @endif
 

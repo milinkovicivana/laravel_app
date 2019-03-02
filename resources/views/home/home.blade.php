@@ -24,7 +24,7 @@
             <hr>
             <img class="img-responsive" src="{{$post->photo ? $post->photo->file : 'empty-image.png'}}" alt="">
             <hr>
-            <p>{!! str_limit($post->body, 100) !!}</p>
+            <p> {!! str_limit($post->body, 40) !!} </p>
             <a class="btn btn-primary" href="{{route('home.post', $post->slug)}}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
             <hr>
