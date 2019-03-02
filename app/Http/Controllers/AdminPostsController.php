@@ -10,6 +10,7 @@ use App\Post;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -171,6 +172,8 @@ class AdminPostsController extends Controller
 
         $comments = $post->comments()->where('is_active', 1)->get();
 
-        return view('post', compact('post', 'categories', 'comments'));
+        $year = Carbon::now()->year;
+
+        return view('post', compact('post', 'categories', 'comments', 'year'));
     }
 }
