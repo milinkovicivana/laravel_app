@@ -3,7 +3,7 @@
 
 @section('content')
 
-    @include('includes.tinyeditor')
+    {{--@include('includes.tinyeditor')--}}
 
     <h1>Edit post</h1>
 

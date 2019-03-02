@@ -19,6 +19,8 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/post/{slug}', ['as'=>'home.post','uses'=>'AdminPostsController@post']);
 
+Route::get('/category/{id}', ['as'=>'home.category','uses'=>'AdminPostsController@postsByCategory']);
+
 Route::group(['middleware'=>'admin'], function(){
 
     Route::get('/admin', 'AdminController@index');

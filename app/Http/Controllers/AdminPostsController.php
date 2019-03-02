@@ -176,4 +176,16 @@ class AdminPostsController extends Controller
 
         return view('post', compact('post', 'categories', 'comments', 'year'));
     }
+
+    public function postsByCategory($id){
+
+        $posts = Post::where('category_id', $id)->get();
+
+        $categories = Category::all();
+
+        $year = Carbon::now()->year;
+
+        return view('category', compact('posts', 'categories', 'year'));
+
+    }
 }
