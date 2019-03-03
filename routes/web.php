@@ -83,4 +83,7 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::post('comment/reply', 'CommentRepliesController@createReply');
 
+    Route::post('/comment/store', 'PostCommentsController@store');
+
+
 });
