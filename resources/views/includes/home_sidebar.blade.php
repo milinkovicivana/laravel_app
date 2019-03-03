@@ -3,14 +3,17 @@
     <!-- Blog Search Well -->
     <div class="well">
         <h4>Blog Search</h4>
-        <div class="input-group">
-            <input type="text" class="form-control">
-            <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
+        <form action="/search" method="post" role="search">
+            {{ csrf_field() }}
+            <div class="input-group">
+                <input type="text" class="form-control" name="q" placeholder="Search posts">
+                <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
                         </button>
                         </span>
-        </div>
+            </div>
+        </form>
         <!-- /.input-group -->
     </div>
 

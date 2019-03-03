@@ -11,6 +11,11 @@
 |
 */
 
+use App\Category;
+use App\Post;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Input;
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
@@ -87,3 +92,24 @@ Route::group(['middleware'=>'auth'], function(){
 
 
 });
+
+Route::any('/search', function (){
+
+    $q = Input::get('q');
+
+    $posts = Post::where('title', 'LIKE', '%' . $q . '%')->orWhere('body', 'LIKE', '%' . $q . '%')->paginate(2);
+
+    $categories = Category::all();
+
+    $year = Carbon::now()->year;
+
+    if(count($posts) > 0){
+
+        return view('home/home', compact('posts', 'categories', 'year'));
+    }else{
+
+        return view('home/home', compact('posts', 'categories', 'year'))->withMessage('No posts found.');
+    }
+
+});
+
