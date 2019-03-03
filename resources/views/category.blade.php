@@ -35,7 +35,7 @@
 
             <!-- Pagination -->
 
-                {{--{{$posts->render()}}--}}
+                {{$posts->render()}}
 
 
             </div>
