@@ -55,6 +55,16 @@
 
             <input type="hidden" name="post_id" value="{{$post->id}}">
 
+        @if(Auth::user()->isAdmin())
+
+            <input type="hidden" name="is_active" value="1">
+
+        @else
+
+            <input type="hidden" name="is_active" value="0">
+
+        @endif
+
         	<div class="form-group">
 
         		{!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>3]) !!}
@@ -133,6 +143,16 @@
             {!! Form::open(['action'=>'CommentRepliesController@createReply']) !!}
 
             <input type="hidden" name="comment_id" value="{{$comment->id}}">
+
+            @if(Auth::user()->isAdmin())
+
+                <input type="hidden" name="is_active" value="1">
+
+            @else
+
+                <input type="hidden" name="is_active" value="0">
+
+            @endif
 
             <div class="form-group">
 

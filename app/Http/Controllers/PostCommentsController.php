@@ -49,7 +49,9 @@ class PostCommentsController extends Controller
 
             'post_id' => $request->post_id,
             'user_id' => $user->id,
-            'body' => $request->body
+            'body' => $request->body,
+            'is_active' => $request->is_active
+
 
         ];
 
