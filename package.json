@@ -6,6 +6,6 @@
   "dependencies": {
     "bootstrap-sass": "^3.4.1",
     "laravel-elixir": "*",
-    "node-sass": "^4.11.0"
+    "node-sass": "^7.0.0"
   }
 }
